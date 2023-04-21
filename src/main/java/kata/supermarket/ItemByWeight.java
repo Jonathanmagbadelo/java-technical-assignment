@@ -6,15 +6,15 @@ import static java.math.RoundingMode.HALF_UP;
 
 public class ItemByWeight implements Item {
 
-    private final WeighedProduct product;
+    private final BigDecimal pricePerKilo;
     private final BigDecimal weightInKilos;
 
-    ItemByWeight(final WeighedProduct product, final BigDecimal weightInKilos) {
-        this.product = product;
+    ItemByWeight(final BigDecimal pricePerKilo, final BigDecimal weightInKilos) {
+        this.pricePerKilo = pricePerKilo;
         this.weightInKilos = weightInKilos;
     }
 
     public BigDecimal price() {
-        return product.pricePerKilo().multiply(weightInKilos).setScale(2, HALF_UP);
+        return pricePerKilo.multiply(weightInKilos).setScale(2, HALF_UP);
     }
 }

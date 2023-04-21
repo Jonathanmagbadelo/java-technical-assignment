@@ -6,11 +6,12 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ProductTest {
+class ItemTest {
 
     @Test
     void singleItemHasExpectedUnitPriceFromProduct() {
         final BigDecimal price = new BigDecimal("2.49");
-        assertEquals(price, new Product(price).oneOf().price());
+        final BigDecimal units = new BigDecimal(1);
+        assertEquals(price, new ItemByUnit(price, units).price());
     }
 }
