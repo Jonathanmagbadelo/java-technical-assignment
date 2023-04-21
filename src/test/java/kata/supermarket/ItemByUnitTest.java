@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ItemTest {
+class ItemByUnitTest {
 
     @Test
     void singleItemHasExpectedUnitPriceFromProduct() {

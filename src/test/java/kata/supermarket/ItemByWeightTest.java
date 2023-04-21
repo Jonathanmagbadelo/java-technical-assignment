@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class WeighedProductTest {
+class ItemByWeightTest {
 
     @ParameterizedTest
     @MethodSource
