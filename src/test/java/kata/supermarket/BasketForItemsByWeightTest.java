@@ -12,22 +12,19 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BasketTest {
-
+public class BasketForItemsByWeightTest {
     @DisplayName("basket provides its total value when containing...")
     @MethodSource
     @ParameterizedTest(name = "{0}")
-    void basketProvidesTotalValue(String description, String expectedTotal, Iterable<Item> items) {
-        final Basket basket = new Basket();
+    void basketProvidesTotalValue(String description, String expectedTotal, Iterable<ItemByWeight> items) {
+        final BasketForItemsByWeight basket = new BasketForItemsByWeight();
         items.forEach(basket::add);
         assertEquals(new BigDecimal(expectedTotal), basket.total());
     }
 
     static Stream<Arguments> basketProvidesTotalValue() {
         return Stream.of(
-                noItems(),
-                aSingleItemPricedPerUnit(),
-                multipleItemsPricedPerUnit(),
+                noWeightedItems(),
                 aSingleItemPricedByWeight(),
                 multipleItemsPricedByWeight()
         );
@@ -43,33 +40,15 @@ class BasketTest {
         );
     }
 
-    private static Arguments multipleItemsPricedPerUnit() {
-        return Arguments.of("multiple items priced per unit", "2.04",
-                Arrays.asList(aPackOfDigestives(), aPintOfMilk()));
-    }
-
-    private static Arguments aSingleItemPricedPerUnit() {
-        return Arguments.of("a single item priced per unit", "0.49", Collections.singleton(aPintOfMilk()));
-    }
-
-    private static Arguments noItems() {
+    private static Arguments noWeightedItems() {
         return Arguments.of("no items", "0.00", Collections.emptyList());
     }
 
-    private static Item aPintOfMilk() {
-        return new ItemByUnit(new BigDecimal("0.49"), new BigDecimal(1));
-    }
-
-    private static Item aPackOfDigestives() {
-        return new ItemByUnit(new BigDecimal("1.55"), new BigDecimal(1));
-    }
-
-
-    private static Item twoFiftyGramsOfAmericanSweets() {
+    private static ItemByWeight twoFiftyGramsOfAmericanSweets() {
         return new ItemByWeight(new BigDecimal("4.99"), new BigDecimal(".25"));
     }
 
-    private static Item twoHundredGramsOfPickAndMix() {
+    private static ItemByWeight twoHundredGramsOfPickAndMix() {
         return new ItemByWeight(new BigDecimal("2.99"), new BigDecimal(".2"));
     }
 }
