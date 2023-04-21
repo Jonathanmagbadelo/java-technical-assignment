@@ -2,8 +2,8 @@ package kata.supermarket;
 
 import java.math.BigDecimal;
 
-public interface Discount {
+public interface Discount<T extends Item> {
 
-    BigDecimal getTotal(Item item);
+    BigDecimal getTotal(T item);
 
 }

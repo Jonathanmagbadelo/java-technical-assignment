@@ -15,4 +15,12 @@ public class ItemByUnit implements Item {
     public BigDecimal price() {
         return pricePerUnit.multiply(unitCount);
     }
+
+    public BigDecimal getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public BigDecimal getUnitCount() {
+        return unitCount;
+    }
 }
